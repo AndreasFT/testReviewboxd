@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Reviewsboxd</title>
+    <link rel="icon" type="image/png" href="asset/img/logo.png">
+    <audio id="sound-success" src="asset/sounds/correct.mp3"></audio>
+    <audio id="sound-wrong" src="asset/sounds/wrong.mp3"></audio>
+    <audio id="sound-finish" src="asset/sounds/win.mp3"></audio>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Letterboxd Photo Quiz</h1>
+        
+        <div id="setup-area">
+            <div class="help-links-container">
+                <a href="https://letterboxd.com/data/export/?fromApp=false" target="_blank" class="export-link">
+                    Cliquez ici pour télécharger votre fichier ZIP Letterboxd
+                </a>
+                <br>
+                <a href="https://www.youtube.com" target="_blank" class="tutorial-link">
+                    ou cliquez ici pour voir comment faire
+                </a>
+            </div>
+
+            <div id="drop-zone" class="upload-box">
+                <div class="upload-content">
+                    <span class="icon">📦</span>
+                    <p>Glisse ton fichier <strong>.zip</strong> ici <br> ou clique pour parcourir</p>
+                    <input type="file" id="zip-file" accept=".zip">
+                </div>
+                <p id="file-name-display" class="hint">Aucun fichier sélectionné</p>
+            </div>
+
+            <div class="quiz-settings">
+                <p>Combien de questions veux-tu ?</p>
+                <div class="options-row">
+                    <button class="num-btn" data-value="5">5</button>
+                    <button class="num-btn" data-value="10">10</button>
+                    <button class="num-btn" data-value="20">20</button>
+                    <button class="num-btn active" data-value="45">45</button>
+                    <input type="number" id="custom-num" placeholder="Autre" min="1">
+                </div>
+            </div>
+
+            <button id="start-game-btn" class="main-btn" disabled>Charger le ZIP d'abord</button>
+
+            <p class="credits">
+                Site web entièrement conçu de A à Z avec l'aide de <strong>Gemini</strong>.
+            </p>
+        </div>
+
+        <div id="game-area" class="hidden">
+            <div id="game-header">
+                <div class="header-row">
+                    <span id="question-counter">Question 1</span>
+                    <button id="home-btn" class="secondary-btn">🏠 Accueil</button>
+                </div>
+                <div id="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
+            </div>
+            
+            <div class="review-box">
+                <p id="review-text">Chargement de la critique...</p>
+            </div>
+            
+            <p class="instruction">Quelle est la bonne affiche ?</p>
+            <div id="options-container" class="poster-grid"></div>
+            
+            <p id="feedback"></p>
+            <button id="next-btn" class="hidden">Continuer</button>
+            <p class="credits">
+                Site web entièrement conçu de A à Z avec l'aide de <strong>Gemini</strong>.
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+body { 
+    background-color: #14181c; 
+    /* Image de fond officielle Letterboxd */
+    background-image: url("https://s.ltrbxd.com/static/img/content-bg.0d9a0f0f.png");
+    background-repeat: repeat-x;
+    background-position: top center;
+    background-attachment: fixed;
+    color: white; 
+    font-family: 'Segoe UI', sans-serif; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh; 
+    margin: 0; 
+}
+
+.container { 
+    text-align: center; 
+    /* Semi-transparence pour voir le fond derrière */
+    background: rgba(44, 52, 64, 0.95); 
+    padding: 25px; 
+    border-radius: 15px; 
+    width: 95%; 
+    max-width: 600px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7); 
+    backdrop-filter: blur(5px); /* Flou léger sous le conteneur */
+}
+
+/* --- LIENS D'AIDE --- */
+.help-links-container {
+    margin: -10px 0 25px 0;
+    line-height: 1.8;
+}
+
+.export-link {
+    color: #99aabb;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 5px 12px;
+    border-radius: 5px;
+    background: rgba(26, 32, 40, 0.6);
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    display: inline-block;
+}
+
+.export-link:hover {
+    color: white;
+    background: #445566;
+    border-color: #40bcf4;
+}
+
+.tutorial-link {
+    color: #667788;
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: color 0.2s;
+}
+
+.tutorial-link:hover {
+    color: #99aabb;
+    text-decoration: underline;
+}
+
+/* --- ZONE DE GLISSER-DÉPOSER --- */
+.upload-box {
+    border: 3px dashed #40bcf4;
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-align: center;
+    background: #1a2028;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.upload-box:hover, .upload-box.dragover {
+    background: #242d38;
+    border-color: #00e054;
+}
+
+#zip-file {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.icon { font-size: 40px; display: block; margin-bottom: 10px; }
+.hint { font-size: 0.85rem; color: #99aabb; margin-top: 10px; }
+
+/* --- PARAMÈTRES DU QUIZ --- */
+.quiz-settings { margin: 25px 0; }
+.options-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.num-btn {
+    background: #445566;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.num-btn.active { background: #40bcf4; }
+
+#custom-num {
+    width: 70px;
+    padding: 8px;
+    background: #1a2028;
+    color: white;
+    border: 1px solid #445566;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* --- INTERFACE DE JEU --- */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#question-counter { font-weight: bold; color: #99aabb; }
+
+#progress-bar-container {
+    width: 100%;
+    height: 8px;
+    background: #1a2028;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #00e054;
+    transition: width 0.4s ease;
+}
+
+.review-box { 
+    background: #1a2028; 
+    padding: 25px; 
+    border-radius: 8px; 
+    border-left: 5px solid #00e054; 
+    font-style: italic; 
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.poster-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; 
+    margin: 20px 0; 
+}
+
+.poster-option { 
+    cursor: pointer; 
+    transition: transform 0.2s; 
+    border-radius: 8px; 
+    border: 4px solid transparent; 
+}
+
+.poster-option img { width: 100%; display: block; border-radius: 4px; }
+.poster-option:hover { transform: scale(1.05); }
+
+.correct { border-color: #00e054 !important; }
+.wrong { border-color: #ff4e00 !important; opacity: 0.6; }
+.hidden { display: none; }
+
+/* --- BOUTONS --- */
+button { 
+    background: #00e054; 
+    color: #14181c; 
+    border: none; 
+    padding: 12px 25px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold;
+}
+
+.main-btn { width: 100%; font-size: 1.1rem; }
+.secondary-btn { background: #445566; color: white; padding: 6px 12px; font-size: 0.8rem; }
+button:disabled { background: #445566; color: #99aabb; cursor: not-allowed; }
+
+/* --- MESSAGE DE CRÉDIT --- */
+.credits {
+    margin-top: 25px;
+    font-size: 0.8rem;
+    color: #667788; /* Gris discret */
+    font-style: italic;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+.credits strong {
+    color: #40bcf4; /* Bleu Gemini/Letterboxd */
+    font-weight: bold;
+}
