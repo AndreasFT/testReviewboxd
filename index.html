@@ -5,23 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Reviewsboxd</title>
     <link rel="icon" type="image/png" href="asset/img/logo.png">
+    
     <audio id="sound-success" src="asset/sounds/correct.mp3"></audio>
     <audio id="sound-wrong" src="asset/sounds/wrong.mp3"></audio>
     <audio id="sound-finish" src="asset/sounds/win.mp3"></audio>
+    
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Letterboxd Photo Quiz</h1>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en">English 🇬🇧</option>
+                <option value="fr">Français 🇫🇷</option>
+            </select>
+        </div>
+
+        <h1 data-i18n="mainTitle">Letterboxd Photo Quiz</h1>
         
         <div id="setup-area">
             <div class="help-links-container">
-                <a href="https://letterboxd.com/data/export/?fromApp=false" target="_blank" class="export-link">
+                <a href="https://letterboxd.com/data/export/?fromApp=false" target="_blank" class="export-link" data-i18n="downloadLink">
                     Cliquez ici pour télécharger votre fichier ZIP Letterboxd
                 </a>
                 <br>
-                <a href="https://www.youtube.com" target="_blank" class="tutorial-link">
+                <a href="#" class="tutorial-link" data-i18n="howToLink">
                     ou cliquez ici pour voir comment faire
                 </a>
             </div>
@@ -29,27 +38,30 @@
             <div id="drop-zone" class="upload-box">
                 <div class="upload-content">
                     <span class="icon">📦</span>
-                    <p>Glisse ton fichier <strong>.zip</strong> ici <br> ou clique pour parcourir</p>
+                    <p data-i18n="dropZoneText">Glisse ton fichier <strong>.zip</strong> ici <br> ou clique pour parcourir</p>
                     <input type="file" id="zip-file" accept=".zip">
                 </div>
-                <p id="file-name-display" class="hint">Aucun fichier sélectionné</p>
+                <p id="file-name-display" class="hint" data-i18n="noFile">Aucun fichier sélectionné</p>
             </div>
 
             <div class="quiz-settings">
-                <p>Combien de questions veux-tu ?</p>
+                <p data-i18n="questionCountLabel">Combien de questions veux-tu ?</p>
                 <div class="options-row">
                     <button class="num-btn" data-value="5">5</button>
                     <button class="num-btn" data-value="10">10</button>
                     <button class="num-btn" data-value="20">20</button>
                     <button class="num-btn active" data-value="45">45</button>
-                    <input type="number" id="custom-num" placeholder="Autre" min="1">
+                    <input type="number" id="custom-num" placeholder="Autre" min="1" data-i18n-placeholder="otherPlaceholder">
                 </div>
             </div>
 
-            <button id="start-game-btn" class="main-btn" disabled>Charger le ZIP d'abord</button>
+            <button id="start-game-btn" class="main-btn" disabled data-i18n="loadZipFirst">Charger le ZIP d'abord</button>
 
             <p class="credits">
-                Site web entièrement conçu de A à Z avec l'aide de <strong>Gemini</strong>. Reviewsboxd@duck.com
+                <span data-i18n="creditsText">Site web entièrement conçu de A à Z avec l'aide de</span> <strong>Gemini</strong>.
+            </p>
+            <p class="credits_mail">
+                <span data-i18n="contactUs">nous contacter</span> <strong><a class="credits_mail_lien" href="mailto:reviewsboxd@duck.com" target="_blank">reviewsboxd@duck.com</a></strong>
             </p>
         </div>
 
@@ -57,7 +69,7 @@
             <div id="game-header">
                 <div class="header-row">
                     <span id="question-counter">Question 1</span>
-                    <button id="home-btn" class="secondary-btn">🏠 Accueil</button>
+                    <button id="home-btn" class="secondary-btn" data-i18n="homeBtn">🏠 Accueil</button>
                 </div>
                 <div id="progress-bar-container">
                     <div id="progress-bar"></div>
@@ -65,19 +77,58 @@
             </div>
             
             <div class="review-box">
-                <p id="review-text">Chargement de la critique...</p>
+                <p id="review-text" data-i18n="loading">Chargement de la critique...</p>
             </div>
             
-            <p class="instruction">Quelle est la bonne affiche ?</p>
+            <p class="instruction" data-i18n="whichPoster">Quelle est la bonne affiche ?</p>
             <div id="options-container" class="poster-grid"></div>
             
             <p id="feedback"></p>
-            <button id="next-btn" class="hidden">Continuer</button>
+            <button id="next-btn" class="hidden" data-i18n="continueBtn">Continuer</button>
+            
             <p class="credits">
-                Site web entièrement conçu de A à Z avec l'aide de <strong>Gemini</strong>. Reviewsboxd@duck.com
+                <span data-i18n="creditsText">Site web entièrement conçu de A à Z avec l'aide de</span> <strong>Gemini</strong>. 
             </p>
         </div>
     </div>
+
+    <div id="tutorial-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-tuto" class="close-modal">&times;</span>
+            <h2 data-i18n="tutoTitle">Comment obtenir votre fichier .zip ?</h2>
+            <div class="tutorial-grid">
+                <div class="step">
+                    <img src="asset/img/1.png" alt="Step 1">
+                    <p><strong>1.</strong> <span data-i18n="step1">Cliquez sur votre pseudo Letterboxd.</span></p>
+                </div>
+                <div class="step">
+                    <img src="asset/img/2.png" alt="Step 2">
+                    <p><strong>2.</strong> <span data-i18n="step2">Allez dans l'onglet "Settings".</span></p>
+                </div>
+                <div class="step">
+                    <img src="asset/img/3.png" alt="Step 3">
+                    <p><strong>3.</strong> <span data-i18n="step3">Allez dans l'onglet "Data".</span></p>
+                </div>
+                <div class="step">
+                    <img src="asset/img/4.png" alt="Step 4">
+                    <p><strong>4.</strong> <span data-i18n="step4">Cliquez sur "Export Your Data".</span></p>
+                </div>
+                <div class="step">
+                    <img src="asset/img/5.png" alt="Step 5">
+                    <p><strong>5.</strong> <span data-i18n="step5">Cliquez sur "Export Data".</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="image-zoom-overlay" class="zoom-overlay hidden">
+        <span id="close-zoom">&times;</span>
+        <img id="zoomed-image" src="" alt="Zoom">
+    </div>
+
+    <a href="help.html" class="floating-help" title="Besoin d'aide ?" target="_blank">
+    <span class="question-mark">?</span>
+    </a>
 
     <script src="script.js"></script>
 </body>

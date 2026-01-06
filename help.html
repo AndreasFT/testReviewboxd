@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - Reviewsboxd</title>
+    <link rel="icon" type="image/png" href="asset/img/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .help-content {
+            text-align: left;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+        .help-content h2 {
+            color: #40bcf4;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+            margin-top: 25px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            width: auto;
+            padding: 12px 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-banner">
+            <button class="lang-btn" onclick="updateLanguage('fr')">
+                <span class="flag">🇫🇷</span> FR
+            </button>
+            <button class="lang-btn" onclick="updateLanguage('en')">
+                <span class="flag">🇬🇧</span> EN
+            </button>
+        </div>
+
+        <h1 data-i18n="helpTitle">Aide & Informations</h1>
+
+        <div class="help-content">
+            <h2 data-i18n="helpQ1">Comment jouer ?</h2>
+            <p data-i18n="helpA1">
+                Le but est de retrouver l'affiche du film correspondant à une critique extraite de votre propre profil Letterboxd. 
+                Pour commencer, vous devez importer votre fichier <strong>.zip</strong> que Letterboxd vous envoie par e-mail lors d'un export de données.
+            </p>
+
+            <h2 data-i18n="helpQ2">Confidentialité</h2>
+            <p data-i18n="helpA2">
+                Vos données restent privées. Le fichier ZIP est lu localement par votre navigateur. 
+                Aucune de vos critiques ou informations personnelles n'est envoyée vers nos serveurs.
+            </p>
+
+            <h2 data-i18n="helpQ3">Un bug ou une suggestion ?</h2>
+            <p data-i18n="helpA3">
+                Si certaines affiches ne s'affichent pas ou si vous avez des idées d'amélioration, 
+                n'hésitez pas à nous contacter par mail.
+            </p>
+        </div>
+
+        <p class="credits" style="margin-top: 40px;">
+           © Reviewsboxd - 2026 reviewsboxd@duck.com
+        </p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
